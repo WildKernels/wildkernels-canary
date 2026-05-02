@@ -74,7 +74,7 @@ export default function SupportedDevicesPage() {
       <div className="w-full max-w-6xl">
         <BlurFade delay={0.1} inView>
           <h1 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Supported Devices
+            Supported Devices (Canary! Most of the entrys are wrong! Just a showcase of how it can work!)
           </h1>
         </BlurFade>
         
