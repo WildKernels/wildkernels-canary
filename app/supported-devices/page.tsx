@@ -17,7 +17,7 @@ export default function SupportedDevicesPage() {
       brand: "XIAOMI",
       status: "Supported",
       works: ["Thermal management", "Performance boost", "Battery optimization"],
-      notWorks: ["Dolby Atmos", "Camera HAL"],
+      notWorks: ["git push test"],
     },
     {
       name: "Google Pixel 8 Pro",
