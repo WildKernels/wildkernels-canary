@@ -26,7 +26,7 @@ export default function InstallationPage() {
       <div className="w-full max-w-2xl">
         <BlurFade delay={0.1} inView>
           <h1 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Installation
+            Installation (Canary Concept! Dont follow the steps!)
           </h1>
         </BlurFade>
         
