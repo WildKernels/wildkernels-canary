@@ -8,7 +8,7 @@ Wildkernels Canary is the live preview build of the upcoming Wildkernels website
 
 ## What is a canary build?
 
-A canary build is an early release that runs alongside the current production site. It lets you see what is coming before it goes live. Things may change, break, or look unfinished. That is intentional.
+A canary build is an early release of our newly rebuilt site. It lets you see what is coming before it goes live. Things may change, break, or look unfinished. That is intentional.
 
 ## Stack
 
