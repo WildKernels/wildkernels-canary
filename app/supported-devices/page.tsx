@@ -753,13 +753,13 @@ export default function SupportedDevicesPage() {
       <div className="w-full max-w-6xl">
         <BlurFade delay={0.1} inView>
           <h1 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-foreground mb-4">
-            GKI Devices
+            Confirmed Devices
           </h1>
         </BlurFade>
         
         <BlurFade delay={0.2} inView>
           <p className="text-muted-foreground mb-8">
-            Wild Kernels GKI support for Xiaomi and dedicated OnePlus devices is listed below. Every OnePlus entry includes the dedicated tag and its OS/kernel/feature details.
+            All confirmed and tested devices with Wild Kernels support are listed below. Each entry includes its dedicated tag along with OS, kernel, and feature details.
           </p>
         </BlurFade>
 
@@ -787,8 +787,8 @@ export default function SupportedDevicesPage() {
             <div className="mt-4 flex flex-wrap gap-3">
               {[
                 { key: "all", label: "All Devices" },
-                { key: "gki", label: "Xiaomi GKI" },
-                { key: "dedicated", label: "Dedicated OnePlus" },
+                { key: "gki", label: "Xiaomi (GKI)" },
+                { key: "dedicated", label: "OnePlus (Dedicated)" },
               ].map((option) => (
                 <button
                   key={option.key}

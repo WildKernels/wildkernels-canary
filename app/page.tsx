@@ -33,32 +33,6 @@ export default function HomePage() {
             Experience the future of development.
           </p>
         </BlurFade>
-
-        <BlurFade delay={0.6} inView>
-          <section className="mt-16 w-full flex justify-center lg:justify-end">
-            <MagicCard className="w-full max-w-[420px] p-6" gradientColor="rgba(34, 197, 94, 0.15)">
-              <div className="relative w-full overflow-hidden rounded-[3rem] border border-border bg-background shadow-[0_24px_80px_-40px_rgba(34,197,94,0.5)] dark:border-slate-700 dark:bg-slate-950">
-                <div className="absolute inset-x-0 top-3 flex justify-center">
-                  <div className="h-1.5 w-20 rounded-full bg-slate-300 dark:bg-slate-600" />
-                </div>
-                <div className="relative mt-6 w-full overflow-hidden rounded-[2rem] bg-black aspect-[1220/2712]">
-                  <Image
-                    src="/wildkernels-canary/images/ksun-day.jpg"
-                    alt="Wild Kernels screenshot light mode"
-                    fill
-                    className="object-cover block dark:hidden"
-                  />
-                  <Image
-                    src="/wildkernels-canary/images/ksun-night.jpg"
-                    alt="Wild Kernels screenshot dark mode"
-                    fill
-                    className="object-cover hidden dark:block"
-                  />
-                </div>
-              </div>
-            </MagicCard>
-          </section>
-        </BlurFade>
       </div>
     </main>
   )
