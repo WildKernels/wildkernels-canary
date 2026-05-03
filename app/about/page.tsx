@@ -99,30 +99,31 @@ export default function AboutPage() {
                   gradientColor="rgba(34, 197, 94, 0.15)"
                 >
                   <div className="flex flex-col items-center text-center">
-                    <div className="relative w-full max-w-[220px] overflow-hidden rounded-[3rem] border border-border bg-background shadow-[0_24px_80px_-40px_rgba(34,197,94,0.5)] dark:border-slate-700 dark:bg-slate-950 mb-6">
+                    <div className="relative w-full max-w-[260px] overflow-hidden rounded-[3rem] border border-border bg-slate-950 shadow-[0_24px_80px_-40px_rgba(34,197,94,0.5)] dark:border-slate-700 mb-6">
                       <div className="absolute inset-x-0 top-4 flex justify-center">
-                        <div className="h-1.5 w-20 rounded-full bg-slate-300 dark:bg-slate-600" />
+                        <div className="h-1.5 w-20 rounded-full bg-slate-800" />
                       </div>
-                      <div className="relative mt-16 mb-4 w-full overflow-hidden rounded-[2rem] bg-black aspect-[1220/2712]">
-                        <Image
-                          src="/wildkernels-canary/images/ksun-day.jpg"
-                          alt="Wild Kernels screenshot light mode"
-                          fill
-                          className="object-cover block dark:hidden"
-                        />
-                        <Image
-                          src="/wildkernels-canary/images/ksun-night.jpg"
-                          alt="Wild Kernels screenshot dark mode"
-                          fill
-                          className="object-cover hidden dark:block"
-                        />
+                      <div className="mt-6 px-5 pb-6 pt-12">
+                        <div className="space-y-4">
+                          <div className="h-3 rounded-full bg-slate-800/80 w-1/2 mx-auto" />
+                          <div className="h-3 rounded-full bg-slate-800/80 w-2/3 mx-auto" />
+                          <div className="rounded-[2rem] bg-slate-900 p-4 space-y-4">
+                            <div className="h-2.5 rounded-full bg-slate-800/70 w-1/3" />
+                            <div className="h-3 rounded-full bg-slate-800/70 w-full" />
+                            <div className="grid grid-cols-2 gap-3">
+                              <div className="h-16 rounded-[1.5rem] bg-slate-900/80" />
+                              <div className="h-16 rounded-[1.5rem] bg-slate-900/80" />
+                            </div>
+                            <div className="h-12 rounded-[1.5rem] bg-slate-900/80" />
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <h3 className="font-[family-name:var(--font-display)] text-lg font-bold mb-2">
-                      Android Device Mockup
+                      Magic UI Mockup
                     </h3>
                     <p className="text-muted-foreground text-sm">
-                      Light and dark mode previews using the theme-aware screenshot mockup.
+                      A Magic UI preview card for the about section.
                     </p>
                   </div>
                 </MagicCard>

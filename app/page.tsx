@@ -35,14 +35,7 @@ export default function HomePage() {
         </BlurFade>
 
         <BlurFade delay={0.6} inView>
-          <section className="mt-16 w-full flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:justify-between">
-            <div className="w-full max-w-2xl text-center lg:text-left">
-              <h2 className="text-3xl font-bold text-foreground mb-4">Wild Kernels Preview</h2>
-              <p className="text-muted-foreground text-base leading-7">
-                Preview the app screenshot in light or dark mode on the homepage. On desktop, the mockup sits to the right of the introduction; on mobile it flows below the text.
-              </p>
-            </div>
-
+          <section className="mt-16 w-full flex justify-center lg:justify-end">
             <MagicCard className="w-full max-w-[420px] p-6" gradientColor="rgba(34, 197, 94, 0.15)">
               <div className="relative w-full overflow-hidden rounded-[3rem] border border-border bg-background shadow-[0_24px_80px_-40px_rgba(34,197,94,0.5)] dark:border-slate-700 dark:bg-slate-950">
                 <div className="absolute inset-x-0 top-3 flex justify-center">
@@ -62,11 +55,6 @@ export default function HomePage() {
                     className="object-cover hidden dark:block"
                   />
                 </div>
-              </div>
-              <div className="mt-6 text-center">
-                <p className="text-muted-foreground text-sm">
-                  Light and dark mode screenshot preview with a more balanced device frame.
-                </p>
               </div>
             </MagicCard>
           </section>
