@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { BlurFade } from "@/components/ui/blur-fade"
+import { MagicCard } from "@/components/ui/magic-card"
 import { Meteors } from "@/components/ui/meteors"
 
 export default function HomePage() {
@@ -31,6 +32,40 @@ export default function HomePage() {
             Wild Kernels builds open-source solutions for the modern web. 
             Experience the future of development.
           </p>
+        </BlurFade>
+
+        <BlurFade delay={0.6} inView>
+          <section className="mt-16 w-full flex justify-center">
+            <MagicCard className="p-6 w-full max-w-[420px]" gradientColor="rgba(34, 197, 94, 0.15)">
+              <div className="flex flex-col items-center text-center">
+                <div className="relative w-full max-w-[260px] overflow-hidden rounded-[3rem] border border-border bg-background shadow-[0_24px_80px_-40px_rgba(34,197,94,0.5)] dark:border-slate-700 dark:bg-slate-950 mb-6">
+                  <div className="absolute inset-x-0 top-4 flex justify-center">
+                    <div className="h-1.5 w-20 rounded-full bg-slate-300 dark:bg-slate-600" />
+                  </div>
+                  <div className="relative mt-16 mb-4 w-full overflow-hidden rounded-[2rem] bg-black aspect-[1220/2712]">
+                    <Image
+                      src="/wildkernels-canary/images/ksun-day.jpg"
+                      alt="Wild Kernels screenshot light mode"
+                      fill
+                      className="object-cover block dark:hidden"
+                    />
+                    <Image
+                      src="/wildkernels-canary/images/ksun-night.jpg"
+                      alt="Wild Kernels screenshot dark mode"
+                      fill
+                      className="object-cover hidden dark:block"
+                    />
+                  </div>
+                </div>
+                <h2 className="font-[family-name:var(--font-display)] text-xl font-bold mb-2">
+                  Wild Kernels Preview
+                </h2>
+                <p className="text-muted-foreground text-sm">
+                  Preview the app screenshot in light or dark mode right from the homepage.
+                </p>
+              </div>
+            </MagicCard>
+          </section>
         </BlurFade>
       </div>
     </main>
