@@ -3,8 +3,10 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, FolderKanban, Download, Info, Smartphone, Menu, X } from "lucide-react"
+import { Home, FolderKanban, Download, Info, Smartphone, Menu, X, ChevronDown } from "lucide-react"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { useDevice } from "@/components/device-context"
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -18,6 +20,9 @@ const navItems = [
 export function Navbar() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const { selectedDevice, setSelectedDevice, deviceFirmwareLinks } = useDevice()
+
+  const isInstallationPage = pathname === "/installation"
 
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-md">
@@ -61,6 +66,28 @@ export function Navbar() {
                 </Link>
               )
             })}
+            {isInstallationPage && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition text-foreground/80 hover:bg-accent hover:text-accent-foreground">
+                    <Smartphone className="h-4 w-4" />
+                    <span>{selectedDevice || "Select Device"}</span>
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {Object.keys(deviceFirmwareLinks).map((device) => (
+                    <DropdownMenuItem
+                      key={device}
+                      onClick={() => setSelectedDevice(device)}
+                      className={cn(selectedDevice === device && "bg-accent")}
+                    >
+                      {device}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
           </div>
           <div className="flex justify-end md:justify-center">
             <ThemeToggle />

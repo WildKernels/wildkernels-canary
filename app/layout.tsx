@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { Footer } from '@/components/footer'
 import { Navbar } from '@/components/Navbar'
 import { ThemeProvider } from '@/components/theme-provider'
+import { DeviceProvider } from '@/components/device-context'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -29,11 +30,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased bg-background">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem enableColorScheme={false}>
-          <Navbar />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
+          <DeviceProvider>
+            <Navbar />
+            <main className="min-h-screen">
+              {children}
+            </main>
+            <Footer />
+          </DeviceProvider>
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </ThemeProvider>
       </body>

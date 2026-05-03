@@ -1,13 +1,43 @@
 "use client"
 
+import { useState, useMemo } from "react"
 import { BlurFade } from "@/components/ui/blur-fade"
 import { Terminal } from "@/components/ui/terminal"
 import { TypingAnimation } from "@/components/ui/typing-animation"
-import { useState } from "react"
-import { Copy, Check } from "lucide-react"
+import { Progress } from "@/components/ui/progress"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { CheckCircle, Copy, Check, ChevronLeft, ChevronRight, Smartphone, Download, Settings, Zap, CheckCircle2 } from "lucide-react"
+import { useDevice } from "@/components/device-context"
+import Link from "next/link"
+
+const steps = [
+  { id: 1, title: "Prerequisites", description: "Prepare your device and tools" },
+  { id: 2, title: "Choose Installation Method", description: "Select how to install the kernel" },
+  { id: 3, title: "ADB & Fastboot Setup", description: "Set up ADB and Fastboot tools" },
+  { id: 4, title: "Download Files", description: "Get all required files" },
+  { id: 5, title: "Installation", description: "Flash the kernel" },
+  { id: 6, title: "Verify & Done", description: "Confirm installation success" },
+]
+
+const installationMethods = [
+  { id: "twp", name: "AnyKernel3 via TWRP", difficulty: "Easy", description: "Flash via custom recovery" },
+  { id: "ksu", name: "Boot Image patching via KSUN Manager", difficulty: "Medium", description: "Use KSUN Manager app" },
+  { id: "fastboot", name: "Direct Fastboot flash", difficulty: "Medium", description: "Direct fastboot commands" },
+  { id: "ksu_post", name: "AnyKernel3 + KSUN post-install", difficulty: "Medium", description: "Combined approach" },
+  { id: "manager", name: "AnyKernel3 via Kernel Manager App", difficulty: "Easy", description: "No PC required" },
+]
 
 export default function InstallationPage() {
+  const [currentStep, setCurrentStep] = useState(1)
+  const [selectedMethod, setSelectedMethod] = useState<string | null>(null)
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const { selectedDevice, deviceFirmwareLinks } = useDevice()
+
+  const progress = (currentStep / steps.length) * 100
 
   const copyToClipboard = async (command: string, index: number) => {
     try {
@@ -21,187 +51,323 @@ export default function InstallationPage() {
     }
   }
 
+  const requiresAdb = useMemo(() => {
+    if (!selectedMethod) return false
+    return ["twp", "fastboot", "ksu_post"].includes(selectedMethod)
+  }, [selectedMethod])
+
+  const nextStep = () => {
+    if (currentStep < steps.length) {
+      let next = currentStep + 1
+      // Skip step 3 if ADB is not required
+      if (next === 3 && !requiresAdb) {
+        next = 4
+      }
+      setCurrentStep(next)
+    }
+  }
+
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1)
+    }
+  }
+
+  const renderStepContent = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <div className="space-y-6">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="adb">
+                <AccordionTrigger>ADB & Fastboot</AccordionTrigger>
+                <AccordionContent>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold mb-2">Option A: PowerShell One-liner</h4>
+                      <Terminal title="powershell">
+                        <div className="flex items-center justify-between group">
+                          <div className="flex-1">
+                            <TypingAnimation className="text-foreground" duration={50}>
+                              &gt; Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/coderello/platform-tools-installer/master/install.ps1'))
+                            </TypingAnimation>
+                          </div>
+                          <button
+                            onClick={() => copyToClipboard("Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/coderello/platform-tools-installer/master/install.ps1'))", 100)}
+                            className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex h-6 w-6 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200 ml-2"
+                            title="Copy command"
+                          >
+                            {copiedIndex === 100 ? (
+                              <Check className="h-3 w-3 text-emerald-400" />
+                            ) : (
+                              <Copy className="h-3 w-3" />
+                            )}
+                          </button>
+                        </div>
+                      </Terminal>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold mb-2">Option B: Manual Download</h4>
+                      <p className="text-sm text-muted-foreground mb-2">
+                        Download Android Platform Tools from <Link href="https://developer.android.com/tools/releases/platform-tools" className="text-primary hover:underline" target="_blank">Google's official site</Link>
+                      </p>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="bootloader">
+                <AccordionTrigger>Unlocked Bootloader</AccordionTrigger>
+                <AccordionContent>
+                  <Alert>
+                    <AlertDescription>
+                      Your device's bootloader must be unlocked to install custom kernels. This process varies by device manufacturer.
+                    </AlertDescription>
+                  </Alert>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="recovery">
+                <AccordionTrigger>Custom Recovery (TWRP)</AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    Download TWRP for your device from <Link href="https://twrp.me" className="text-primary hover:underline" target="_blank">twrp.me</Link>
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="usb">
+                <AccordionTrigger>USB Debugging</AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-sm text-muted-foreground">
+                    Enable Developer Options and USB Debugging in Android Settings → Developer Options → USB Debugging
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="kernel">
+                <AccordionTrigger>Download WildKernels ZIP</AccordionTrigger>
+                <AccordionContent>
+                  <p className="text-sm text-muted-foreground">
+                    Get the latest WildKernels release from <Link href="https://github.com/wildkernels/releases" className="text-primary hover:underline" target="_blank">GitHub Releases</Link>
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        )
+      case 2:
+        return (
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {installationMethods.map((method) => (
+              <Card
+                key={method.id}
+                className={`cursor-pointer transition-all hover:shadow-lg ${
+                  selectedMethod === method.id ? 'ring-2 ring-primary' : ''
+                }`}
+                onClick={() => setSelectedMethod(method.id)}
+              >
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-lg">{method.name}</CardTitle>
+                    <Badge variant={method.difficulty === 'Easy' ? 'default' : 'secondary'}>
+                      {method.difficulty}
+                    </Badge>
+                  </div>
+                  <CardDescription>{method.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        )
+      case 3:
+        if (!requiresAdb) {
+          setCurrentStep(4)
+          return null
+        }
+        return (
+          <div className="space-y-6">
+            {/* Existing ADB commands */}
+            <Terminal title="powershell">
+              <div className="flex items-center justify-between group mb-2">
+                <div className="flex-1">
+                  <TypingAnimation className="text-foreground" duration={50}>
+                    &gt; adb devices
+                  </TypingAnimation>
+                </div>
+                <button
+                  onClick={() => copyToClipboard("adb devices", 0)}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex h-6 w-6 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200 ml-2"
+                  title="Copy command"
+                >
+                  {copiedIndex === 0 ? (
+                    <Check className="h-3 w-3 text-emerald-400" />
+                  ) : (
+                    <Copy className="h-3 w-3" />
+                  )}
+                </button>
+              </div>
+              <span className="text-green-500">List of devices attached</span>
+              <span className="text-green-500">HT1A12345678 device</span>
+            </Terminal>
+            {/* Add more terminals as needed */}
+          </div>
+        )
+      case 4:
+        return (
+          <div className="grid gap-4 md:grid-cols-2">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Download className="h-5 w-5" />
+                  WildKernels ZIP
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button asChild>
+                  <Link href="https://github.com/wildkernels/releases" target="_blank">
+                    Download
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Smartphone className="h-5 w-5" />
+                  KSUN Manager APK
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button asChild>
+                  <Link href="https://github.com/KSUNManager" target="_blank">
+                    Download
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>TWRP</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button asChild>
+                  <Link href="https://twrp.me" target="_blank">
+                    Download
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Android Platform Tools</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button asChild>
+                  <Link href="https://developer.android.com/tools/releases/platform-tools" target="_blank">
+                    Download
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="md:col-span-2">
+              <CardHeader>
+                <CardTitle>Stock ROM / Firmware</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {selectedDevice ? (
+                  <Button asChild>
+                    <Link href={deviceFirmwareLinks[selectedDevice]} target="_blank">
+                      Download for {selectedDevice}
+                    </Link>
+                  </Button>
+                ) : (
+                  <p className="text-muted-foreground">Select your device in the navbar to see firmware links</p>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )
+      case 5:
+        return (
+          <div className="space-y-6">
+            <p>Installation steps for {selectedMethod}</p>
+            {/* Dynamic content based on selectedMethod */}
+          </div>
+        )
+      case 6:
+        return (
+          <div className="text-center space-y-6">
+            <CheckCircle2 className="h-16 w-16 text-green-500 mx-auto" />
+            <h3 className="text-2xl font-bold">Installation Complete!</h3>
+            <p className="text-muted-foreground">Your device has been successfully updated with WildKernels.</p>
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+
   return (
     <main className="min-h-screen flex flex-col items-center px-4 py-16 pb-32">
-      <div className="w-full max-w-2xl">
+      <div className="w-full max-w-4xl">
         <BlurFade delay={0.1} inView>
           <h1 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Installation (Canary Concept! Dont follow the steps!)
+            Installation Guide
           </h1>
         </BlurFade>
-        
+
         <BlurFade delay={0.2} inView>
           <p className="text-muted-foreground mb-8">
             Follow these steps to flash a Wild Kernels kernel on your Android device.
-            Make sure you have ADB and Fastboot installed on your computer.
           </p>
         </BlurFade>
 
-        {/* Step 1: List devices */}
-        <BlurFade delay={0.3} inView className="mb-8">
-          <Terminal title="powershell">
-            <div className="flex items-center justify-between group mb-2">
-              <div className="flex-1">
-                <TypingAnimation className="text-foreground" duration={50}>
-                  &gt; adb devices
-                </TypingAnimation>
-              </div>
-              <button
-                onClick={() => copyToClipboard("adb devices", 0)}
-                className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex h-6 w-6 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200 ml-2"
-                title="Copy command"
-              >
-                {copiedIndex === 0 ? (
-                  <Check className="h-3 w-3 text-emerald-400" />
-                ) : (
-                  <Copy className="h-3 w-3" />
-                )}
-              </button>
+        {/* Progress Indicator */}
+        <BlurFade delay={0.3} inView>
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-4">
+              {steps.map((step) => (
+                <div key={step.id} className="flex flex-col items-center">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                    step.id <= currentStep ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
+                  }`}>
+                    {step.id}
+                  </div>
+                  <span className="text-xs mt-1 text-center">{step.title}</span>
+                </div>
+              ))}
             </div>
-
-            <BlurFade delay={0.6} inView>
-              <span className="text-green-500">List of devices attached</span>
-            </BlurFade>
-            
-            <BlurFade delay={0.8} inView>
-              <span className="text-green-500">HT1A12345678 device</span>
-            </BlurFade>
-          </Terminal>
-        </BlurFade>
-
-        {/* Step 2: Reboot bootloader */}
-        <BlurFade delay={0.4} inView className="mb-8">
-          <Terminal title="powershell">
-            <div className="flex items-center justify-between group mb-2">
-              <div className="flex-1">
-                <TypingAnimation className="text-foreground" duration={50}>
-                  &gt; adb reboot bootloader
-                </TypingAnimation>
-              </div>
-              <button
-                onClick={() => copyToClipboard("adb reboot bootloader", 1)}
-                className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex h-6 w-6 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200 ml-2"
-                title="Copy command"
-              >
-                {copiedIndex === 1 ? (
-                  <Check className="h-3 w-3 text-emerald-400" />
-                ) : (
-                  <Copy className="h-3 w-3" />
-                )}
-              </button>
-            </div>
-
-            <BlurFade delay={0.8} inView>
-              <span className="text-blue-500">ℹ Rebooting to bootloader...</span>
-            </BlurFade>
-          </Terminal>
-        </BlurFade>
-
-        {/* Step 3: Verify fastboot devices */}
-        <BlurFade delay={0.5} inView className="mb-8">
-          <Terminal title="powershell">
-            <div className="flex items-center justify-between group mb-2">
-              <div className="flex-1">
-                <TypingAnimation className="text-foreground" duration={50}>
-                  &gt; fastboot devices
-                </TypingAnimation>
-              </div>
-              <button
-                onClick={() => copyToClipboard("fastboot devices", 2)}
-                className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex h-6 w-6 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200 ml-2"
-                title="Copy command"
-              >
-                {copiedIndex === 2 ? (
-                  <Check className="h-3 w-3 text-emerald-400" />
-                ) : (
-                  <Copy className="h-3 w-3" />
-                )}
-              </button>
-            </div>
-
-            <BlurFade delay={0.8} inView>
-              <span className="text-green-500">HT1A12345678 fastboot</span>
-            </BlurFade>
-          </Terminal>
-        </BlurFade>
-
-        {/* Step 4: Flash kernel */}
-        <BlurFade delay={0.6} inView className="mb-8">
-          <Terminal title="powershell">
-            <div className="flex items-center justify-between group mb-2">
-              <div className="flex-1">
-                <TypingAnimation className="text-foreground" duration={50}>
-                  &gt; fastboot flash boot kernel.img
-                </TypingAnimation>
-              </div>
-              <button
-                onClick={() => copyToClipboard("fastboot flash boot kernel.img", 3)}
-                className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex h-6 w-6 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200 ml-2"
-                title="Copy command"
-              >
-                {copiedIndex === 3 ? (
-                  <Check className="h-3 w-3 text-emerald-400" />
-                ) : (
-                  <Copy className="h-3 w-3" />
-                )}
-              </button>
-            </div>
-
-            <BlurFade delay={0.8} inView>
-              <span className="text-green-500">Sending 'boot' (12345 KB) OKAY</span>
-            </BlurFade>
-
-            <BlurFade delay={1} inView>
-              <span className="text-green-500">Writing 'boot' OKAY</span>
-            </BlurFade>
-          </Terminal>
-        </BlurFade>
-
-        {/* Step 5: Reboot device */}
-        <BlurFade delay={0.7} inView className="mb-8">
-          <Terminal title="powershell">
-            <div className="flex items-center justify-between group mb-2">
-              <div className="flex-1">
-                <TypingAnimation className="text-foreground" duration={50}>
-                  &gt; fastboot reboot
-                </TypingAnimation>
-              </div>
-              <button
-                onClick={() => copyToClipboard("fastboot reboot", 4)}
-                className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex h-6 w-6 items-center justify-center rounded-md border border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200 ml-2"
-                title="Copy command"
-              >
-                {copiedIndex === 4 ? (
-                  <Check className="h-3 w-3 text-emerald-400" />
-                ) : (
-                  <Copy className="h-3 w-3" />
-                )}
-              </button>
-            </div>
-
-            <BlurFade delay={0.8} inView>
-              <span className="text-blue-500">ℹ Rebooting device...</span>
-            </BlurFade>
-
-            <BlurFade delay={1.2} inView>
-              <span className="text-green-500">Success! Kernel installation completed.</span>
-            </BlurFade>
-
-            <BlurFade delay={1.6} inView>
-              <span className="text-green-500">Your device will now boot with the new Wild Kernels kernel.</span>
-            </BlurFade>
-          </Terminal>
-        </BlurFade>
-
-        <BlurFade delay={0.9} inView>
-          <div className="mt-8 p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg">
-            <p className="text-amber-500 text-sm">
-              <strong>Warning:</strong> Flashing a custom kernel may void your warranty 
-              and could potentially brick your device. Proceed at your own risk and make 
-              sure to backup your data.
-            </p>
+            <Progress value={progress} className="w-full" />
           </div>
         </BlurFade>
+
+        {/* Step Content */}
+        <BlurFade key={currentStep} delay={0.4} inView>
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold mb-4">{steps[currentStep - 1].title}</h2>
+            <p className="text-muted-foreground mb-6">{steps[currentStep - 1].description}</p>
+            {renderStepContent()}
+          </div>
+        </BlurFade>
+
+        {/* Navigation */}
+        <div className="flex justify-between items-center">
+          <Button
+            variant="outline"
+            onClick={prevStep}
+            disabled={currentStep === 1}
+            className="flex items-center gap-2"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            Back
+          </Button>
+          <span className="text-sm text-muted-foreground">Step {currentStep} of {steps.length}</span>
+          <Button
+            onClick={nextStep}
+            disabled={currentStep === steps.length}
+            className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
+          >
+            Next
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
     </main>
   )
