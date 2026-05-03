@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useMemo, useState } from "react"
 import { BlurFade } from "@/components/ui/blur-fade"
@@ -383,7 +383,7 @@ const devices = [
   {
     name: "OnePlus Pad 3 MT6897",
     codename: "erhai",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android14-6.1.128",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -391,7 +391,7 @@ const devices = [
   {
     name: "OnePlus Pad 3 MT6897",
     codename: "erhai",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android14-6.1.134",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -399,7 +399,7 @@ const devices = [
   {
     name: "OnePlus Pad 3 SM8750",
     codename: "erhai_pro",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android15-6.6.57",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -407,7 +407,7 @@ const devices = [
   {
     name: "OnePlus Pad 3 SM8750",
     codename: "erhai_pro",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android15-6.6.89",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -415,7 +415,7 @@ const devices = [
   {
     name: "OnePlus Pad Go 2",
     codename: "bluey_v2",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android14-6.1.134",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -423,7 +423,7 @@ const devices = [
   {
     name: "OnePlus Pad Lite",
     codename: "starlight",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android12-5.10.226",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -431,7 +431,7 @@ const devices = [
   {
     name: "OnePlus Pad MT6983",
     codename: "aries",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android12-5.10.226",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -439,7 +439,7 @@ const devices = [
   {
     name: "OnePlus Pad MT6983",
     codename: "aries",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android12-5.10.236",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -447,7 +447,7 @@ const devices = [
   {
     name: "OnePlus Pad Pro",
     codename: "rainbow",
-    osVersion: "OOS14",
+    osVersion: "Oxygen OS 14",
     kernelVersion: "android14-6.1.75",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -455,7 +455,7 @@ const devices = [
   {
     name: "OnePlus Pad Pro",
     codename: "rainbow",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android14-6.1.118",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -463,7 +463,7 @@ const devices = [
   {
     name: "OnePlus Pad Pro",
     codename: "rainbow",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android14-6.1.118",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -471,7 +471,7 @@ const devices = [
   {
     name: "OnePlus Turbo 6V",
     codename: "jet",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android14-6.1.118",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -479,7 +479,7 @@ const devices = [
   {
     name: "OnePlus Turbo 6",
     codename: "jet",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android15-6.6.89",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -487,7 +487,7 @@ const devices = [
   {
     name: "OnePlus 10 Pro",
     codename: "negroni",
-    osVersion: "OOS14",
+    osVersion: "Oxygen OS 14",
     kernelVersion: "android12-5.10.209",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -495,7 +495,7 @@ const devices = [
   {
     name: "OnePlus 10 Pro",
     codename: "negroni",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android12-5.10.226",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -503,7 +503,7 @@ const devices = [
   {
     name: "OnePlus 10 Pro",
     codename: "negroni",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android12-5.10.236",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -511,7 +511,7 @@ const devices = [
   {
     name: "OnePlus 10R",
     codename: "pickle",
-    osVersion: "OOS14",
+    osVersion: "Oxygen OS 14",
     kernelVersion: "android12-5.10.168",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -519,7 +519,7 @@ const devices = [
   {
     name: "OnePlus 10R",
     codename: "pickle",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android12-5.10.209",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -527,7 +527,7 @@ const devices = [
   {
     name: "OnePlus 10T",
     codename: "ovaltine",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android12-5.10.226",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -535,7 +535,7 @@ const devices = [
   {
     name: "OnePlus 11",
     codename: "salami",
-    osVersion: "OOS14",
+    osVersion: "Oxygen OS 14",
     kernelVersion: "android13-5.15.123",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -543,7 +543,7 @@ const devices = [
   {
     name: "OnePlus 11",
     codename: "salami",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android13-5.15.167",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -551,7 +551,7 @@ const devices = [
   {
     name: "OnePlus 11",
     codename: "salami",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android13-5.15.180",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -559,7 +559,7 @@ const devices = [
   {
     name: "OnePlus 11R",
     codename: "udon",
-    osVersion: "OOS14",
+    osVersion: "Oxygen OS 14",
     kernelVersion: "android12-5.10.209",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -567,7 +567,7 @@ const devices = [
   {
     name: "OnePlus 11R",
     codename: "udon",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android12-5.10.226",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -575,7 +575,7 @@ const devices = [
   {
     name: "OnePlus 11R",
     codename: "udon",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android12-5.10.236",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -583,7 +583,7 @@ const devices = [
   {
     name: "OnePlus 12",
     codename: "waffle",
-    osVersion: "OOS14",
+    osVersion: "Oxygen OS 14",
     kernelVersion: "android14-6.1.57",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -591,7 +591,7 @@ const devices = [
   {
     name: "OnePlus 12",
     codename: "waffle",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android14-6.1.118",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -599,7 +599,7 @@ const devices = [
   {
     name: "OnePlus 12",
     codename: "waffle",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android14-6.1.141",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -607,7 +607,7 @@ const devices = [
   {
     name: "OnePlus 12R",
     codename: "aston",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android13-5.15.167",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -615,7 +615,7 @@ const devices = [
   {
     name: "OnePlus 12R",
     codename: "aston",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android13-5.15.180",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -623,7 +623,7 @@ const devices = [
   {
     name: "OnePlus 13 CPH",
     codename: "dodge",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android15-6.6.89",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -631,7 +631,7 @@ const devices = [
   {
     name: "OnePlus 13 PJZ",
     codename: "dodge",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android15-6.6.66",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -639,7 +639,7 @@ const devices = [
   {
     name: "OnePlus 13S",
     codename: "dodge",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android15-6.6.56",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -647,7 +647,7 @@ const devices = [
   {
     name: "OnePlus 13S",
     codename: "dodge",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android15-6.6.89",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -655,7 +655,7 @@ const devices = [
   {
     name: "OnePlus 13T",
     codename: "dodge",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android15-6.6.66",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -663,7 +663,7 @@ const devices = [
   {
     name: "OnePlus 13T",
     codename: "dodge",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android15-6.6.89",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -671,7 +671,7 @@ const devices = [
   {
     name: "OnePlus 13",
     codename: "dodge",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android15-6.6.89",
     features: ["HMBIRD", "SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6 NAT", "Unicode Fix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -679,7 +679,7 @@ const devices = [
   {
     name: "OnePlus 13R",
     codename: "giulia",
-    osVersion: "OOS15",
+    osVersion: "Oxygen OS 15",
     kernelVersion: "android14-6.1.118",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -687,7 +687,7 @@ const devices = [
   {
     name: "OnePlus 13R",
     codename: "giulia",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android14-6.1.118",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "Droidspaces", "NTSync"],
     dedicated: true,
@@ -695,7 +695,7 @@ const devices = [
   {
     name: "OnePlus 15T",
     codename: "ferrari",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android16-6.12.38",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -703,7 +703,7 @@ const devices = [
   {
     name: "OnePlus 15",
     codename: "cayenne",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android16-6.12.23",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
@@ -711,7 +711,7 @@ const devices = [
   {
     name: "OnePlus 15R",
     codename: "ferrari",
-    osVersion: "OOS16",
+    osVersion: "Oxygen OS 16",
     kernelVersion: "android16-6.12.38",
     features: ["SusFS", "BBR", "BBG", "TTL", "IP_SET & IPv6NAT", "UnicodeFix", "NTSync"],
     dedicated: true,
