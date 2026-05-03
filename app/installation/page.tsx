@@ -431,51 +431,6 @@ export default function InstallationPage() {
   )
 }
 
-export default function InstallationPage() {
-  const searchParams = useSearchParams()
-  const methodParam = searchParams.get("method")
-  const [selectedMethod, setSelectedMethod] = useState<string | null>(methodParam || null)
-  const [currentStep, setCurrentStep] = useState(1)
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
-
-  const method = useMemo(() => installationMethods.find(m => m.id === selectedMethod), [selectedMethod])
-
-  const copyToClipboard = async (command: string, index: number) => {
-    try {
-      if (typeof navigator !== 'undefined' && navigator.clipboard) {
-        await navigator.clipboard.writeText(command)
-        setCopiedIndex(index)
-        setTimeout(() => setCopiedIndex(null), 2000)
-      }
-    } catch (err) {
-      console.error('Failed to copy command:', err)
-    }
-  }
-
-  const requiresAdb = useMemo(() => {
-    if (!selectedMethod) return false
-    return ["twp", "fastboot", "ksu_post"].includes(selectedMethod)
-  }, [selectedMethod])
-
-  const nextStep = () => {
-    if (currentStep < steps.length) {
-      let next = currentStep + 1
-      // Skip step 3 if ADB is not required
-      if (next === 3 && !requiresAdb) {
-        next = 4
-      }
-      setCurrentStep(next)
-    }
-  }
-
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1)
-    }
-  }
-
-  const renderStepContent = () => {
-    switch (currentStep) {
       case 1:
         return (
           <div className="space-y-6">
