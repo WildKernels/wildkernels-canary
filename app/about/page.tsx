@@ -1,6 +1,6 @@
 import { BlurFade } from "@/components/ui/blur-fade"
 import { MagicCard } from "@/components/ui/magic-card"
-import { MessageCircle, Github } from "lucide-react"
+import { MessageCircle, Github, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
@@ -84,12 +84,20 @@ export default function AboutPage() {
                     <p className="text-muted-foreground text-sm mb-4">
                       The Wild James - Owner of Wild Kernels and GKI Developer.
                     </p>
-                    <Button asChild variant="outline" size="sm" className="gap-2">
-                      <Link href="https://github.com/TheWildJames" target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4" />
-                        GitHub
-                      </Link>
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button asChild variant="outline" size="sm" className="gap-2">
+                        <Link href="https://github.com/TheWildJames" target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4" />
+                          GitHub
+                        </Link>
+                      </Button>
+                      <Button asChild variant="outline" size="sm" className="gap-2">
+                        <Link href="https://t.me/TheWildJames" target="_blank" rel="noopener noreferrer">
+                          <Send className="h-4 w-4" />
+                          Telegram DM
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </MagicCard>
               </BlurFade>
