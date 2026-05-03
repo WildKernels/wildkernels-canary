@@ -38,7 +38,7 @@ export default function AboutPage() {
 
         <BlurFade delay={0.2}>
           <section className="mb-12">
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-3">
               <BlurFade delay={0.2}>
                 <MagicCard
                   className="p-6 h-full"
@@ -90,6 +90,40 @@ export default function AboutPage() {
                         GitHub
                       </Link>
                     </Button>
+                  </div>
+                </MagicCard>
+              </BlurFade>
+              <BlurFade delay={0.4}>
+                <MagicCard
+                  className="p-6 h-full"
+                  gradientColor="rgba(34, 197, 94, 0.15)"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <div className="relative w-full max-w-[260px] overflow-hidden rounded-[3rem] border border-border bg-background shadow-[0_24px_80px_-40px_rgba(34,197,94,0.5)] dark:border-slate-700 dark:bg-slate-950 mb-6">
+                      <div className="absolute inset-x-0 top-4 flex justify-center">
+                        <div className="h-1.5 w-20 rounded-full bg-slate-300 dark:bg-slate-600" />
+                      </div>
+                      <div className="relative mt-16 mb-4 h-[520px] overflow-hidden rounded-[2rem] bg-black">
+                        <Image
+                          src="/wildkernels-canary/images/ksun-day.jpg"
+                          alt="Wild Kernels screenshot light mode"
+                          fill
+                          className="object-cover block dark:hidden"
+                        />
+                        <Image
+                          src="/wildkernels-canary/images/ksun-night.jpg"
+                          alt="Wild Kernels screenshot dark mode"
+                          fill
+                          className="object-cover hidden dark:block"
+                        />
+                      </div>
+                    </div>
+                    <h3 className="font-[family-name:var(--font-display)] text-lg font-bold mb-2">
+                      Android Device Mockup
+                    </h3>
+                    <p className="text-muted-foreground text-sm">
+                      Light and dark mode previews using the theme-aware screenshot mockup.
+                    </p>
                   </div>
                 </MagicCard>
               </BlurFade>
