@@ -725,130 +725,137 @@ export default function SupportedDevicesPage() {
               No devices match your search or selected filter.
             </div>
           ) : (
-            filteredDevices.map((device, index) => (
-            <BlurFade key={`${device.name}-${device.osVersion ?? device.codename}-${index}`} delay={0.3 + index * 0.01} inView>
-              <MagicCard className="flex flex-col h-full p-6 bg-slate-900/50 border border-slate-800">
-                <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <h2 className="font-bold text-lg text-foreground mb-1">{device.name}</h2>
-                    {device.codename && (
-                      <p className="text-xs text-muted-foreground font-mono">Codename: {device.codename}</p>
+            filteredDevices.map((device, index) => {
+              return (
+                <BlurFade
+                  key={`${device.name}-${device.osVersion ?? device.codename}-${index}`}
+                  delay={0.3 + index * 0.01}
+                  inView
+                >
+                  <MagicCard className="flex flex-col h-full p-6 bg-slate-900/50 border border-slate-800">
+                    <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <h2 className="font-bold text-lg text-foreground mb-1">{device.name}</h2>
+                        {device.codename && (
+                          <p className="text-xs text-muted-foreground font-mono">Codename: {device.codename}</p>
+                        )}
+                      </div>
+                      {device.dedicated && (
+                        <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                          Dedicated
+                        </span>
+                      )}
+                    </div>
+
+                    {device.osVersion && (
+                      <div className="mb-2 text-xs text-muted-foreground">
+                        <div className="flex justify-between gap-3 border-b border-slate-800 pb-2">
+                          <span>OS Version</span>
+                          <span className="text-slate-200">{device.osVersion}</span>
+                        </div>
+                        <div className="flex justify-between gap-3 pt-2">
+                          <span>Kernel Version</span>
+                          <span className="text-slate-200">{device.kernelVersion}</span>
+                        </div>
+                      </div>
                     )}
-                  </div>
-                  {device.dedicated && (
-                    <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300">
-                      Dedicated
-                    </span>
-                  )}
-                </div>
 
-                {device.osVersion && (
-                  <div className="mb-2 text-xs text-muted-foreground">
-                    <div className="flex justify-between gap-3 border-b border-slate-800 pb-2">
-                      <span>OS Version</span>
-                      <span className="text-slate-200">{device.osVersion}</span>
-                    </div>
-                    <div className="flex justify-between gap-3 pt-2">
-                      <span>Kernel Version</span>
-                      <span className="text-slate-200">{device.kernelVersion}</span>
-                    </div>
-                  </div>
-                )}
+                    {Array.isArray(device.features) ? (
+                      <div className="mb-4">
+                        <h3 className="text-xs font-semibold text-green-500 mb-2 flex items-center gap-1">
+                          <Check className="h-3 w-3" /> Features
+                        </h3>
+                        <ul className="space-y-1">
+                          {device.features.map((item) => (
+                            <li key={item} className="text-xs text-muted-foreground flex items-start gap-2">
+                              <span className="text-green-500 mt-0.5">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : (
+                      <div className="mb-4 text-xs text-muted-foreground">
+                        <h3 className="mb-2 text-green-500 text-[11px] uppercase tracking-[0.16em]">
+                          Features
+                        </h3>
+                        <p className="whitespace-pre-wrap text-sm text-slate-200">{device.features}</p>
+                      </div>
+                    )}
 
-                {Array.isArray(device.features) ? (
-                  <div className="mb-4">
-                    <h3 className="text-xs font-semibold text-green-500 mb-2 flex items-center gap-1">
-                      <Check className="h-3 w-3" /> Features
-                    </h3>
-                    <ul className="space-y-1">
-                      {device.features.map((item) => (
-                        <li key={item} className="text-xs text-muted-foreground flex items-start gap-2">
-                          <span className="text-green-500 mt-0.5">•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : (
-                  <div className="mb-4 text-xs text-muted-foreground">
-                    <h3 className="mb-2 text-green-500 text-[11px] uppercase tracking-[0.16em]">
-                      Features
-                    </h3>
-                    <p className="whitespace-pre-wrap text-sm text-slate-200">{device.features}</p>
-                  </div>
-                )}
+                    {device.knownLimitations?.length > 0 && (
+                      <div className="mb-4">
+                        <h3 className="text-xs font-semibold text-amber-500 mb-2 flex items-center gap-1">
+                          <X className="h-3 w-3" /> Known Limitations
+                        </h3>
+                        <ul className="space-y-1">
+                          {device.knownLimitations.map((item) => (
+                            <li key={item} className="text-xs text-muted-foreground flex items-start gap-2">
+                              <span className="text-amber-500 mt-0.5">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
 
-                {device.knownLimitations?.length > 0 && (
-                  <div className="mb-4">
-                    <h3 className="text-xs font-semibold text-amber-500 mb-2 flex items-center gap-1">
-                      <X className="h-3 w-3" /> Known Limitations
-                    </h3>
-                    <ul className="space-y-1">
-                      {device.knownLimitations.map((item) => (
-                        <li key={item} className="text-xs text-muted-foreground flex items-start gap-2">
-                          <span className="text-amber-500 mt-0.5">•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                    {device.kernelVariants?.length > 0 && (
+                      <div className="mb-4">
+                        <h3 className="text-xs font-semibold text-sky-400 mb-2">
+                          Kernel Variants by HOS
+                        </h3>
+                        <ul className="space-y-1 text-xs text-muted-foreground">
+                          {device.kernelVariants.map((variant) => (
+                            <li key={`${variant.hos}-${variant.kernel}`} className="flex justify-between gap-4">
+                              <span className="font-medium text-slate-200">{variant.hos}</span>
+                              <span>{variant.kernel}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
 
-                {device.kernelVariants?.length > 0 && (
-                  <div className="mb-4">
-                    <h3 className="text-xs font-semibold text-sky-400 mb-2">
-                      Kernel Variants by HOS
-                    </h3>
-                    <ul className="space-y-1 text-xs text-muted-foreground">
-                      {device.kernelVariants.map((variant) => (
-                        <li key={`${variant.hos}-${variant.kernel}`} className="flex justify-between gap-4">
-                          <span className="font-medium text-slate-200">{variant.hos}</span>
-                          <span>{variant.kernel}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                    {device.compatibleKernels?.length > 0 && (
+                      <div className="mb-4">
+                        <h3 className="text-xs font-semibold text-sky-400 mb-2">
+                          Compatible Alternatives
+                        </h3>
+                        <ul className="space-y-1 text-xs text-muted-foreground">
+                          {device.compatibleKernels.map((item) => (
+                            <li key={item.kernel} className="flex justify-between gap-4">
+                              <span className="font-medium text-slate-200">{item.description}</span>
+                              <span>{item.kernel}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
 
-                {device.compatibleKernels?.length > 0 && (
-                  <div className="mb-4">
-                    <h3 className="text-xs font-semibold text-sky-400 mb-2">
-                      Compatible Alternatives
-                    </h3>
-                    <ul className="space-y-1 text-xs text-muted-foreground">
-                      {device.compatibleKernels.map((item) => (
-                        <li key={item.kernel} className="flex justify-between gap-4">
-                          <span className="font-medium text-slate-200">{item.description}</span>
-                          <span>{item.kernel}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {device.rom && (
-                  <div className="grid gap-2 text-sm text-muted-foreground">
-                    <div className="flex justify-between border-t border-slate-800 pt-4">
-                      <span className="text-slate-300">ROM:</span>
-                      <span>{device.rom}</span>
-                    </div>
-                    <div className="flex justify-between border-t border-slate-800 pt-4">
-                      <span className="text-slate-300">ROM Kernel:</span>
-                      <span>{device.romKernel}</span>
-                    </div>
-                    <div className="flex justify-between border-t border-slate-800 pt-4">
-                      <span className="text-slate-300">Working Kernel:</span>
-                      <span>{device.workingKernel}</span>
-                    </div>
-                    <div className="flex justify-between border-t border-slate-800 pt-4">
-                      <span className="text-slate-300">Last Confirmed:</span>
-                      <span>{device.lastConfirmed}</span>
-                    </div>
-                  </div>
-                )}
-              </MagicCard>
-            </BlurFade>
-          ))}
+                    {device.rom && (
+                      <div className="grid gap-2 text-sm text-muted-foreground">
+                        <div className="flex justify-between border-t border-slate-800 pt-4">
+                          <span className="text-slate-300">ROM:</span>
+                          <span>{device.rom}</span>
+                        </div>
+                        <div className="flex justify-between border-t border-slate-800 pt-4">
+                          <span className="text-slate-300">ROM Kernel:</span>
+                          <span>{device.romKernel}</span>
+                        </div>
+                        <div className="flex justify-between border-t border-slate-800 pt-4">
+                          <span className="text-slate-300">Working Kernel:</span>
+                          <span>{device.workingKernel}</span>
+                        </div>
+                        <div className="flex justify-between border-t border-slate-800 pt-4">
+                          <span className="text-slate-300">Last Confirmed:</span>
+                          <span>{device.lastConfirmed}</span>
+                        </div>
+                      </div>
+                    )}
+                  </MagicCard>
+                </BlurFade>
+              )
+            })
+          )}
         </div>
 
         {/* Coming Soon Info Section */}
