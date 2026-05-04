@@ -1,2 +1,10 @@
 {
+  "files.exclude": {
+    "**/.next": false,
+    "**/node_modules": false
+  },
+  "search.exclude": {
+    "**/.next": true,
+    "**/node_modules": true
+  }
 }
