@@ -4,7 +4,7 @@
 
 Wildkernels Canary is the live preview build of the upcoming Wildkernels website, rebuilt from the ground up with a completely new design, new architecture, and new features. This canary build reflects the current state of active development and will eventually replace the existing site entirely.
 
-🌐 https://zqxr4.github.io/wildkernels-canary/
+🌐 wildkernels.dev/wildkernels-canary/
 
 ## What is a canary build?
 
