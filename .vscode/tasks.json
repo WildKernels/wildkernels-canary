@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Push to both repos",
+      "type": "shell",
+      "command": "git pull && git add . && git commit -m 'Update' && git push",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ],
+  "buttons": [
+    {
+      "label": "⬆ Push",
+      "task": "Push to both repos"
+    }
+  ]
+}
