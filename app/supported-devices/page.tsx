@@ -654,7 +654,7 @@ export default function SupportedDevicesPage() {
                       </div>
                     )}
 
-                    {device.knownLimitations?.length > 0 && (
+                    {device.knownLimitations && device.knownLimitations.length > 0 && (
                       <div className="mb-4">
                         <h3 className="text-xs font-semibold text-amber-500 mb-2 flex items-center gap-1">
                           <X className="h-3 w-3" /> Known Limitations
@@ -670,7 +670,7 @@ export default function SupportedDevicesPage() {
                       </div>
                     )}
 
-                    {device.kernelVariants?.length > 0 && (
+                    {device.kernelVariants && device.kernelVariants.length > 0 && (
                       <div className="mb-4">
                         <h3 className="text-xs font-semibold text-sky-400 mb-2">
                           Kernel Variants by HOS
@@ -686,7 +686,7 @@ export default function SupportedDevicesPage() {
                       </div>
                     )}
 
-                    {device.compatibleKernels?.length > 0 && (
+                    {device.compatibleKernels && device.compatibleKernels.length > 0 && (
                       <div className="mb-4">
                         <h3 className="text-xs font-semibold text-sky-400 mb-2">
                           Compatible Alternatives
