@@ -39,7 +39,7 @@ const brandFirmwareLinks: BrandFirmwareLinks = {
     { name: "SamFW", link: "https://samfw.com/" },
   ],
   OnePlus: [
-    { name: "OnePlus, havent found one, if you have one tell @zqxr4 in the telegram group)", link: "https://example.com/oneplus-ace2" },
+    { name: "OnePlus, havent found one, if you have one tell @zqxr4 in the Telegram group)", link: "https://example.com/oneplus-ace2" },
   ],
 }
 
