@@ -24,16 +24,15 @@ const installationMethods = [
 ]
 
 const brandFirmwareLinks = {
-  Xiaomi: [
-    { name: "Xiaomi Redmi Note 13", link: "https://example.com/xiaomi-rn13" },
-    { name: "Xiaomi 13T Pro", link: "https://example.com/xiaomi-13t" },
+  Xiaomi ROM: [
+    { name: "MiFirm", link: "https://mifirm.net/" },
+    { name: "Official Download from Xiaomi Community (may not have newest version)", link: "https://new.c.mi.com/global/miuidownload/index" },
   ],
   Samsung: [
-    { name: "Samsung Galaxy S24", link: "https://example.com/samsung-s24" },
-    { name: "Samsung Galaxy A54", link: "https://example.com/samsung-a54" },
+    { name: "SamFW", link: "https://samfw.com/" },
   ],
   OnePlus: [
-    { name: "OnePlus Ace 2 Pro", link: "https://example.com/oneplus-ace2" },
+    { name: "OnePlus, havent found one, if you have one tell @zqxr4 in the telegram group)", link: "https://example.com/oneplus-ace2" },
   ],
 }
 
