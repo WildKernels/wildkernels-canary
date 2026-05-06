@@ -11,7 +11,7 @@ const projects = [
     title: "Wild KSU",
     description: "An advanced Kernel based root solution for Android.",
     icon: Smartphone,
-    status: "active",
+    status: "pausing",
     github: "https://github.com/WildKernels/Wild_KSU",
   },
   {
@@ -71,9 +71,9 @@ export default function ProjectsPage() {
                     <div className="p-2 rounded-lg bg-green-500/10">
                       <project.icon className="h-6 w-6 text-green-500" />
                     </div>
-                    {project.status === "wip" && (
+                    {(project.status === "wip" || project.status === "pausing") && (
                       <span className="text-xs px-2 py-1 rounded-full bg-amber-500/20 text-amber-500 font-medium">
-                        WIP
+                        {project.status === "wip" ? "WIP" : "Pausing Development"}
                       </span>
                     )}
                   </div>
@@ -83,6 +83,11 @@ export default function ProjectsPage() {
                   <p className="text-muted-foreground text-sm flex-grow">
                     {project.description}
                   </p>
+                  {project.title === "Wild KSU" && (
+                    <p className="text-muted-foreground text-xs mt-2">
+                      All future builds will be KernelSU-Next
+                    </p>
+                  )}
                   {project.github && (
                     <Button asChild variant="outline" size="sm" className="gap-2">
                       <Link href={project.github} target="_blank" rel="noopener noreferrer">
