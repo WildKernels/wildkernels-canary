@@ -15,6 +15,13 @@ import { MagicCard } from "@/components/ui/magic-card"
 import { Copy, Check, ChevronLeft, ChevronRight, Download, ExternalLink, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 
+type FirmwareLink = {
+  name: string
+  link: string
+}
+
+type BrandFirmwareLinks = Record<string, FirmwareLink[]>
+
 const installationMethods = [
   { id: "twp", name: "AnyKernel3 via TWRP", difficulty: "Easy", description: "Flash via custom recovery", requiresAdb: true },
   { id: "ksu", name: "Boot Image patching via KSUN Manager", difficulty: "Medium", description: "Use KSUN Manager app", requiresAdb: false },
@@ -23,8 +30,8 @@ const installationMethods = [
   { id: "manager", name: "AnyKernel3 via Kernel Manager App", difficulty: "Easy", description: "No PC required", requiresAdb: false },
 ]
 
-const brandFirmwareLinks = {
-  Xiaomi ROM: [
+const brandFirmwareLinks: BrandFirmwareLinks = {
+  "Xiaomi ROM": [
     { name: "MiFirm", link: "https://mifirm.net/" },
     { name: "Official Download from Xiaomi Community (may not have newest version)", link: "https://new.c.mi.com/global/miuidownload/index" },
   ],
@@ -255,7 +262,7 @@ export default function InstallationPageClient() {
                         </AccordionTrigger>
                         <AccordionContent>
                           <div className="space-y-2">
-                            {devices.map((device) => (
+                            {devices.map((device: FirmwareLink) => (
                               <Button key={device.name} asChild variant="outline" className="w-full justify-start">
                                 <Link href={device.link} target="_blank">
                                   <ExternalLink className="h-4 w-4 mr-2" />
