@@ -40,9 +40,9 @@ const brandFirmwareLinks = {
 export default function InstallationPageClient() {
   const searchParams = useSearchParams()
   const methodParam = searchParams.get("method")
-  const [selectedMethod, setSelectedMethod] = useState(methodParam || null)
+  const [selectedMethod, setSelectedMethod] = useState<string | null>(methodParam || null)
   const [currentStep, setCurrentStep] = useState(1)
-  const [copiedIndex, setCopiedIndex] = useState(null)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   const method = useMemo(() => installationMethods.find(m => m.id === selectedMethod), [selectedMethod])
   
@@ -68,7 +68,7 @@ export default function InstallationPageClient() {
 
   const progress = steps.length > 0 ? (currentStep / steps.length) * 100 : 0
 
-  const copyToClipboard = async (command, index) => {
+  const copyToClipboard = async (command: string, index: number) => {
     try {
       if (typeof navigator !== "undefined" && navigator.clipboard) {
         await navigator.clipboard.writeText(command)
